@@ -1,0 +1,62 @@
+\documentclass[12pt]{report}
+
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref} 
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=false,                 
+    captionpos=b,                    
+    keepspaces=true,                   
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!red},
+    urlcolor={blue!80!black}
+}
+
+\title{Adding tamper resistance and non repudiation to relational databases}
+\date{2021\\ February}
+\author{Ian Purton\\ Senior Technical Architect\\ Airbus Defence and Space}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+%\input{background}
+
+%\input{solution}
+
+%\input{api}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{proposal}
+\bibliographystyle{unsrt}
+
+\end{document}
