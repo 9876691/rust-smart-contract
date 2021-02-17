@@ -1,6 +1,17 @@
 version: '3.4'
 services:
 
+  #polkadot-master:
+  #  image: parity/polkadot:master
+  #  ports:
+  #    - "9944:9944"
+  #    - "9933:9933"
+  #  command:
+  #    - "--dev"
+  #    - "--ws-external"
+  #    - "--rpc-external"
+  #    - "-lruntime=debug"
+
   development:
     build: 
       context: .

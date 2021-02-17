@@ -1,0 +1,5 @@
+cargo +nightly contract build
+cargo +nightly test
+cargo +nightly contract generate-metadata
+
+canvas --dev --tmp
