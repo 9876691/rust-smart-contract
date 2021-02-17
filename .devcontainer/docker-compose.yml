@@ -1,17 +1,6 @@
 version: '3.4'
 services:
 
-  #polkadot-master:
-  #  image: parity/polkadot:master
-  #  ports:
-  #    - "9944:9944"
-  #    - "9933:9933"
-  #  command:
-  #    - "--dev"
-  #    - "--ws-external"
-  #    - "--rpc-external"
-  #    - "-lruntime=debug"
-
   development:
     build: 
       context: .
@@ -22,10 +11,6 @@ services:
       - ~/.ssh:/home/host-ssh:cached
       - /var/run/docker.sock:/var/run/docker.sock
       - target:/vscode/target # Set target as a volume for performance. 
-      #- node_modules:/vscode/node_modules # Set target as a volume for performance. 
-
-    environment:
-      DATABASE_URL: postgresql://vscode:testpassword@db:5432
 
     #env_file:
     #  - ../.env
