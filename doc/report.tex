@@ -5,6 +5,7 @@
 \usepackage[english]{babel}
 \usepackage{hyperref} 
 \usepackage{xcolor}
+\usepackage[acronym]{glossaries}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -38,10 +39,13 @@
     urlcolor={blue!80!black}
 }
 
-\title{Adding tamper resistance and non repudiation to relational databases}
+\title{Proof of Concept - Manoeuvre Negotiation Using Smart Contracts}
 \date{2021\\ February}
 \author{Ian Purton\\ Senior Technical Architect\\ Airbus Defence and Space}
 
+\input{glossary}
+
+\makenoidxglossaries
 
 \begin{document}
 
@@ -49,14 +53,18 @@
 
 \tableofcontents
 
-%\input{background}
+\input{background}
 
 %\input{solution}
 
 %\input{api}
 
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliography{proposal}
+\bibliography{report}
 \bibliographystyle{unsrt}
+
+\clearpage
+\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary
 
 \end{document}
