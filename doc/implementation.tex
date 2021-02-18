@@ -1,6 +1,8 @@
 \chapter{Implementation}
 
-\section{IDE Setup}
+\section{Github}
+
+The code for this \gls{poc} is available on Github \cite{github}
 
 \section{Development}
 
@@ -62,4 +64,23 @@ pub fn add_ca_provider(&mut self,
 }
 \end{lstlisting}
 
-\section{Deployment}
+\section{Unit testing}
+
+\section{Local Integration testing}
+
+I was able to get a test node up and running in VSCode \pageref{node}. 
+However I wan't able to get the web based client to attach to my node \pageref{canvas}.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{node-screenshot} 
+    \caption{Substrate node running in VSCode terminal}
+    \label{node}
+\end{figure}
+
+I would require more time to get my contract deployed and tested on a local node.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{canvas-ui} 
+    \caption{You are not connected to a node}
+    \label{canvas}
+\end{figure}
