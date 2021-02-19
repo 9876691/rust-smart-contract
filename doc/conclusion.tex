@@ -5,7 +5,7 @@
 \begin{enumerate}
     \item It took me about 4 hours to setup a reproducable development environment using 
         VSCode dev containers \cite{containers}
-    \item This was tested on windows and osx. Allowing me to compile, test and 
+    \item This was tested on Windows and Osx. Allowing me to compile, test and 
         run up a test node. 
     \item I was able to leverage my existing Rust skillset which helped a lot.
     \item The learning curve is steep due to heavy use of the rust type system. 2 Toolchains
@@ -13,6 +13,8 @@
     \item There is a tutorial \cite{tutorial}
     \item There is some presence on StackOverflow \cite{overflow}
     \item Incremental build of a contract is just over 1 second.
+    \item I raised an issue on github when I couldn't get some code to compile and
+     the developers had an answer within 24 hours.
     \item I use rust-analyzer to give me intellisense and to point out compilation issues as
         I type. This worked well but it did give me red marks for compilation errors
         which didn't get flagged on the command line.
@@ -23,24 +25,33 @@
 I was able to to get a test node up and running. Unfortuantely I couldn't get the 
 user interface to connect to my local node. This may be that I'm running the 
 from within a docker container.
-I was able to use the Restful API to get blochcian information. In time I could get
+I was able to use the Restful API to get blockchain information. In time I could get
 this working.
 
 \section{Integration Testing and Simulation}
 
 
 \begin{enumerate}
-    \item I have high confidence that I could build a CI/CD pipeline an deploy direct to a testnet.
+    \item I have high confidence that I could build a CI/CD pipeline and deploy direct to a testnet.
         This would make the workflow between development and simulation much easier.
+    \item Because Edgeware supplies a test network it could be possible
+        to run testing without running any of our own infrastructure.
+    \item We should consider wether we need to run any blockchain infrastructure
+        at all. The production network uses a token, this would mean the 
+        operators would pay for RPC calls, but we would not need to run and \
+        maintain a network of nodes.
 \end{enumerate}
 
 
-\section{Todo}
+\section{If I Had More Time}
 
 To complete the PoC and cover all the risks of this technolgy I would need to do the following.
 
 \begin{enumerate}
     \item Add functions and structs to manage a negotiation workflow.
-    \item Deploy a staging environment.
+    \item Deploy a staging environment including our own nodes.
+    \item Get a node and UI running locally so developers can do integration 
+    testing on their own machines.
     \item Deploy a minimal UI that can interact with a node.
+    \item Deploy the smart contract to the edgeware production network.
 \end{enumerate}

@@ -73,7 +73,8 @@ mod negotiate {
         pub fn submit_cdm(&mut self, 
             cdm: ConjunctionDataMessage) {
             
-            if self.ca_providers.iter().any(|&account| account == self.env().caller()) {
+            if self.ca_providers.iter().any(|&account| 
+                account == self.env().caller()) {
                 self.cdms.push(cdm);
             }
         }
@@ -82,7 +83,8 @@ mod negotiate {
     /// Unit tests.
     #[cfg(test)]
     mod tests {
-        /// Imports all the definitions from the outer scope so we can use them here.
+        /// Imports all the definitions from the outer scope 
+        /// so we can use them here.
         use super::*;
 
         use ink_lang as ink;
@@ -106,18 +108,22 @@ mod negotiate {
             let mut negotiator = Negotiate::new();
 
             let accounts =
-                ink_env::test::default_accounts::<ink_env::DefaultEnvironment>()
+                ink_env::test::default_accounts::
+                    <ink_env::DefaultEnvironment>()
                     .expect("Cannot get accounts");
 
             // Get contract address
-            let callee = ink_env::account_id::<ink_env::DefaultEnvironment>()
+            let callee = ink_env::account_id::
+                <ink_env::DefaultEnvironment>()
                 .unwrap_or([0x0; 32].into());
             // Create call
             let mut data =
-                ink_env::test::CallData::new(ink_env::call::Selector::new([0x00; 4])); // balance_of
+                ink_env::test::CallData::new(
+            ink_env::call::Selector::new([0x00; 4])); 
             data.push_arg(&accounts.bob);
-            // Push the new execution context to set Bob as caller
-            ink_env::test::push_execution_context::<ink_env::DefaultEnvironment>(
+            // Push the new context to set Bob as caller
+            ink_env::test::push_execution_context::
+                <ink_env::DefaultEnvironment>(
                 accounts.bob,
                 callee,
                 1000000,
@@ -135,7 +141,8 @@ mod negotiate {
             let mut negotiator = Negotiate::new();
 
             let accounts =
-                ink_env::test::default_accounts::<ink_env::DefaultEnvironment>()
+                ink_env::test::default_accounts::
+                    <ink_env::DefaultEnvironment>()
                     .expect("Cannot get accounts");
 
             // This will panic
@@ -144,14 +151,17 @@ mod negotiate {
             assert_eq!(1, negotiator.ca_providers.len());
 
             // Switch over to frank
-            let callee = ink_env::account_id::<ink_env::DefaultEnvironment>()
+            let callee = ink_env::account_id::
+                <ink_env::DefaultEnvironment>()
                 .unwrap_or([0x0; 32].into());
             // Create call
             let mut data =
-                ink_env::test::CallData::new(ink_env::call::Selector::new([0x00; 4])); // balance_of
+                ink_env::test::CallData::new(
+            ink_env::call::Selector::new([0x00; 4]));
             data.push_arg(&accounts.bob);
-            // Push the new execution context to set Bob as caller
-            ink_env::test::push_execution_context::<ink_env::DefaultEnvironment>(
+            // Push the new context to set Bob as caller
+            ink_env::test::push_execution_context::
+                <ink_env::DefaultEnvironment>(
                 accounts.frank,
                 callee,
                 1000000,
