@@ -71,7 +71,11 @@ mod negotiate {
 
         #[ink(message)]
         pub fn submit_cdm(&mut self, 
-            _cdm: ConjunctionDataMessage) {
+            cdm: ConjunctionDataMessage) {
+            
+            if self.ca_providers.iter().any(|&account| account == self.env().caller()) {
+                self.cdms.push(cdm);
+            }
         }
     }
 
@@ -126,7 +130,7 @@ mod negotiate {
         }
         /// Only the contract owner can add providers
         #[ink::test]
-        fn adding_providers_works() {
+        fn adding_providers_and_cdms_works() {
             // Constructor works.
             let mut negotiator = Negotiate::new();
 
@@ -138,6 +142,31 @@ mod negotiate {
             negotiator.add_ca_provider(accounts.frank);
 
             assert_eq!(1, negotiator.ca_providers.len());
+
+            // Switch over to frank
+            let callee = ink_env::account_id::<ink_env::DefaultEnvironment>()
+                .unwrap_or([0x0; 32].into());
+            // Create call
+            let mut data =
+                ink_env::test::CallData::new(ink_env::call::Selector::new([0x00; 4])); // balance_of
+            data.push_arg(&accounts.bob);
+            // Push the new execution context to set Bob as caller
+            ink_env::test::push_execution_context::<ink_env::DefaultEnvironment>(
+                accounts.frank,
+                callee,
+                1000000,
+                1000000,
+                data,
+            );
+
+            negotiator.submit_cdm(ConjunctionDataMessage {
+                object1_norad_id: 1234,
+                object2_norad_id: 5678,
+                collision_probabilty: 50,
+                time_of_closest_pass: 123345567
+            });
+
+            assert_eq!(1, negotiator.cdms.len());
         }
     }
 }
