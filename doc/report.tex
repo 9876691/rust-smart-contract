@@ -3,17 +3,29 @@
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{tikz}
 \usepackage{hyperref} 
 \usepackage{xcolor}
 \usepackage[acronym]{glossaries}
 \usepackage{graphicx}
 \usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usetikzlibrary{ shapes.geometric }
+\usetikzlibrary{calc}
+\usepackage{anyfontsize}
+
 \graphicspath{ {./images/} }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{namecolor}{cmyk}{1,.50,0,.10} 
+
+\definecolor{titlepagecolor}{RGB}{20,36,36}
+%\definecolor{titlepagepattern}{RGB}{76,84,92}
+\definecolor{titlepagepattern}{RGB}{33,28,42}
+\definecolor{titlepagetext}{RGB}{255,255,255}
 
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
@@ -42,6 +54,10 @@
     urlcolor={blue!80!black}
 }
 
+% switch to sanserif
+% https://tex.stackexchange.com/questions/2095/what-is-the-simplest-way-to-typeset-an-entire-document-in-sans-serif
+\renewcommand{\familydefault}{\sfdefault}
+
 \title{Proof of Concept - Manoeuvre Negotiation Using Smart Contracts}
 \date{2021\\ February}
 \author{Ian Purton\\ Senior Technical Architect\\ Airbus Defence and Space}
@@ -51,8 +67,64 @@
 \makenoidxglossaries
 
 \begin{document}
+\pagestyle{empty}
 
-\maketitle
+\begin{tikzpicture}[remember picture,overlay]
+%%%%%%%%%%%%%%%%%%%% Background %%%%%%%%%%%%%%%%%%%%%%%%
+\fill[titlepagecolor] (current page.south west) rectangle (current page.north east);
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% Background Polygon %%%%%%%%%%%%%%%%%%%%
+
+\foreach \i in {2.5,...,22}
+{
+    \node[rounded corners,titlepagepattern!60,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.west)+(2.5,-5)$) {} ;
+}
+
+\foreach \i in {0.5,...,22}
+{
+\node[rounded corners,titlepagepattern!60,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.north west)+(2.5,0)$) {} ;
+}
+
+\foreach \i in {0.5,...,22}
+{
+\node[rounded corners,titlepagepattern!90,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.north east)+(0,-9.5)$) {} ;
+}
+
+
+\foreach \i in {21,...,6}
+{
+\node[titlepagepattern!85,rounded corners,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.south east)+(-0.2,-0.45)$) {} ;
+}
+
+
+%%%%%%%%%%%%%%%%%%%% Title of the Report %%%%%%%%%%%%%%%%%%%% 
+\node[left,titlepagetext,minimum width=0.625*\paperwidth,minimum height=3cm, rounded corners] at ($(current page.north east)+(0,-9.5)$)
+{
+{\fontsize{25}{30} \selectfont \bfseries Smart Contracts}
+};
+
+%%%%%%%%%%%%%%%%%%%% Subtitle %%%%%%%%%%%%%%%%%%%% 
+\node[left,titlepagetext,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north east)+(0,-11)$)
+{
+{\huge \textit{Manoeuvre Negotiations}}
+};
+
+%%%%%%%%%%%%%%%%%%%% Author Name %%%%%%%%%%%%%%%%%%%% 
+\node[left,titlepagetext,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north east)+(0,-13)$)
+{
+{\Large \textsc{Ian Purton}}
+};
+
+%%%%%%%%%%%%%%%%%%%% Year %%%%%%%%%%%%%%%%%%%% 
+\node[rounded corners,fill=titlepagepattern!70,text =black,regular polygon,regular polygon sides=6, minimum size=2.5 cm,inner sep=0,ultra thick] at ($(current page.west)+(2.5,-5)$) {\LARGE \bfseries 2020};
+
+\end{tikzpicture}
+
+\restoregeometry % restores the geometry
+\nopagecolor% Use this to restore the color pages to white
 
 \tableofcontents
 
